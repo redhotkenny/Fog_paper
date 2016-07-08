@@ -1,0 +1,418 @@
+\documentclass[a4paper,12pt]{article}
+
+% ------------ Load packages -------------
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\graphicspath{{fig/}{fig/pdf/}{eps/}{./}}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{array}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{verbatim}
+\usepackage{url}
+\usepackage[colorlinks,citecolor=blue]{hyperref}
+\usepackage{booktabs}%for nice tabs
+\usepackage[small,bf]{caption} %for little font caption
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[spanish,english]{babel}
+\usepackage{arydshln}
+\usepackage{natbib} % for Bibtek
+\bibliographystyle{agu}
+\newcommand{\checkthis}[1] {{\textcolor{magenta}{#1}}}
+\usepackage{colortbl}	%color en la tabla
+\usepackage[table,x11names]{xcolor}
+\usepackage{hhline}		%para la tabla
+%\usepackage{floatrow}
+%\usepackage{booktabs}	
+%\usepackage[font=footnotesize,labelfont=bf,up,textfont=it,up, position=top, singlelinecheck=false]{caption}
+\usepackage{lineno}	%numero lineas
+\modulolinenumbers[5]
+
+
+\title{\normalfont{Quantification of cloud water interception at the windward slope highlands of San Cristobal Island\\ DRAFT Version 1}}
+
+\author{Dom\'{i}nguez C.\textsuperscript{1,2}, \and Garc\'{i}a Vera M.\textsuperscript{3} \and Chaumont C.\textsuperscript{4} \and Tournebize J.\textsuperscript{4} \and Villacis M.\textsuperscript{5} \and Violette S.\textsuperscript{1,2}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+Cloud water interception (CWI) by the vegetation can be an important water input to ecosystems subject to fog occurrence. In this work, we propose a methodology to estimate CWI by a forest using a Rutter-type interception model. The approach requires the acquisition of experimental observations. Continuous records of meteorological variables, including fog interception that is measured using a fog gauge system, are used as the input dataset of the model.  Additionally, throughfall measurements performed below the forest are required only for the calibration and validation of the model, which constitutes a significant advantage considering the difficulties to obtain continuous records of throughfall. This methodology is applied in San Cristobal Island (Galapagos), where a semi-permanent fog layer covers the windward highlands during six months of a year. A study plot in a endemic forest in the highlands has been monitored during two years. Results show that CWI reaches 23\% and 10\% of the total water input of the first and second year, respectively. During the hot seasons, where fog is absent, CWI is negligible as expected, while it represents 37\% and 19\% of the water inputs during the first and second cool seasons, respectively. The marked difference of CWI between both cool seasons is related to higher liquid water content in the air during the first season. This methodology provides an indirect quantification of CWI by the vegetation from artificial fog gauges, it identifies controlling factors of CWI and it could be used to compare CWI in contrasting land covers. 
+
+\end{abstract}
+
+{\let\thefootnote\relax\footnotetext{\textsuperscript{1} \textit{UPMC-Sorbonne Universités, 4 Place Jussieu, 75252 Paris Cedex 05, France}}}
+{\let\thefootnote\relax\footnotetext{\textsuperscript{2} \textit{ENS-PSL Research University \& CNRS, UMR.8538-Laboratoire de Geologie, 24 rue Lhomond, 75231 Paris Cedex 05, France}}}
+%{\let\thefootnote\relax\footnotetext{\textsuperscript{3} \textit{EA 4592, Institut Polytechnique de Bordeaux et Université Bordeaux Montaigne. 1, Allée Fernand Daguin, 33607 Pessac, France}}}
+{\let\thefootnote\relax\footnotetext{\textsuperscript{3} \textit{Department of Physics, National Polytechnic School, Quito, Ecuador}}}
+{\let\thefootnote\relax\footnotetext{\textsuperscript{4} \textit{IRSTEA UR HBAN, 1 rue Pierre Gilles de Gennes, 92761 Antony cedex, France}}}
+{\let\thefootnote\relax\footnotetext{\textsuperscript{5} \textit{Department of Civil and Environmental Engineering, National Polytechnic School, Quito, Ecuador}}}
+%{\let\thefootnote\relax\footnotetext{\textsuperscript{6} \textit{Charles Darwin Foundation, Puerto Ayora, Galapagos Islands, Ecuador}}}
+
+
+\begin{linenumbers}
+\section{Introduction}
+Cloud water interception (CWI) by the vegetation subject to fog occurrence has been considered as an important hydrological process because it is an additional water input to the canopy water budget. Moreover, it has been associated with a reduction in the evapotranspiration \citep{Hamiltonetal1995, Bruijnzeel2001, Ritteretal2008}. Its measurement is critical for a suitable water management policies, especially in regions with limited water resources and subject to land use change. 
+
+Basically, three main factors influence CWI \citep{Braumanetal2010, Villegasetal2008, Ritteretal2008}: climatic conditions (air liquid content, fog drop size, wind speed), canopy structure (size, height, density, leave morphology and orientation) and location (elevation, terrain slope and orientation). Attempts to quantify CWI has been proposed in different locations around the world \citep{Ingrahametal1988, CavalierandGoldstein1989, Hamiltonetal1995, Holder2004, McJannetetal2007a, Gabrieletal2008, GomezPeraltaetal2008, Ritteretal2008, Villegasetal2008, Holwerdaetal2010, Ueharaetal2012, Pryetetal2012a}, reporting variable results, which show that CWI is highly dependable of the site. Methods to quantify CWI includes the use of passive fog gauges \citep{Juvik1978, Ingrahametal1988, Aboaletal2000, Villegasetal2008, Frumauetal2011}, measurements of net precipitation (throughfall and stemflow) \citep{Holder2003, Gabrieletal2008, Pradaetal2009, Pryetetal2012a} and others alternatives such as the use of eddy covariance instruments \citep{Changetal2002, Holwerdaetal2006, Eugsteretal2006}. Even though the latter have proven to effectively provide estimates of fog deposition, the instrumentation is expensive and the data treatment is challenging. In the other hand, fog gauges are relatively easy to install but the fog estimates they provide are related to their capacity to catch fog and not from the vegetation. Thus, these are indirect estimates that are dependable of the fog gauge design. Net precipitation measurements in that sens, provide direct estimations related to the canopy capacity to intercept fog, once the interception variable in the canopy water balance is known. Few studies have related estimates of CWI from passive fog gauges with the ones of vegetation. \cite{Ritteretal2008} used data from fog gauges to derive fog characteristics, which are used in a physically based impaction model to quantify CWI of a subtropical elfin cloud forest in La Gomera (Canary Islands). \cite{Holwerdaetal2011} found that estimates of CWI with a wet canopy water budget in a Puerto Rican elfin cloud forest correlated significantly with measured CWI in passive fog gauges.
+
+Interception models have been used in the context of CWI to estimate rainfall interception losses, in which observed net precipitation is compared with the simulated one in conditions without fog (rain-only events) and the difference is attributed to CWI \citep{Holwerdaetal2010, Pryetetal2012a}. These models require measurements of rainfall and net precipitation, whereas evaporation is estimated with an energy balance approach (most commonly Penman–Monteith theory). The drawback of this approach is that it requires continuous measurements of net precipitation, which can be challenging.  The two most common approaches used are \citep{Muzyloetal2009}:  i) Rutter-type models (e.g. \cite{Liu1997, Rutter1975}), based on the running canopy water budget, and 2) Gash-type models (e.g. \cite{Gash1979, Zengetal2000}), based on discrete rainfall events. Generally, Gash models are preferred because of their simplicity, but they require the separation of individual rainfall events. In context of fog occurrence and continuous rainfall, this could be quite challenging. This could probably be reason why Rutter type model were more freqeuntly used in tropical rainforest climates \citep{Muzyloetal2009}. Moreover, \cite{vanDijketal2015} studied sources of errors in the estimation of interception losses in canopy water budgets, and showed that the Rutter-type model with accurate estimations of evaporation provide the best results. 
+
+The objective of this work is to propose and validate an innovate methodology to estimate cloud water interception by a forest using a Rutter-type interception model, in which CWI in the forest is estimated from monitoring of climatic variables, including fog interception by a passive fog gauge system. CWI estimates in the forest are obtained from measurements of the passive fog gauge and not as the remaining variable in the canopy water balance. In this way, measured net precipitation is only used for calibration and validation purposes. We tested this methodology in an endemic forest in the highlands of San Cristobal Island (Galapagos Archipelago). 
+
+\section{Study Area}
+\subsection{Climatic and hydrological context}
+The Galapagos Archipelago is located in the Eastern Pacific, $1000$ $\mathrm{km}$ west of the Ecuadorian mainland. The climatic conditions are atypical for its equatorial position. Essentially, there are two distinct seasons: 1) The cool “garua” season from June to December, where the sea surface and air temperature are relatively low \citep{PalmerandPyle1966, Dunbaretal1994}, and it is characterized by the occurrence of orographic precipitations and the presence of a semi-permanent fog layer that covers the highlands of the main islands \citep{TruemananddOzouville2010, Pryetetal2012a}. 2) The hot “invierno” season from January to May, characterized by high sea and air temperatures, and high intensity convective precipitations \citep{GrantandBoag1980, Dunbaretal1994, TruemananddOzouville2010}. Considering the long term records (1965-2015) of the weather station operated by the \emph{Charles Darwin Foundation} at the coast of Santa Cruz Island (alt. $6$ $\mathrm{m}$ a.s.l.), the median annual rainfall is $278$ $\mathrm{mm}$ and the average air temperature is $24$ $\mathrm{^{\circ}C}$.
+
+San Cristobal Island, located at the East of Galapagos, is the only island of the Archipelago with permanent surface water resources (\autoref{fig3:fog_map}). This resources are located at the southern side of the island. The hydrological system is complex in this zone. Over the highlands, gentle slopes allow the pounding of rainfall. Over mid-slope, a well-developed drainage network can be observed. Several ravines are dry, but others are fed by perennial springs that outcrop of impermeable layers. The interpretation from the AEM SkyTEM dataset \cite{dOzouville2007} suggests that the spring are originated from perched aquifers formed over impervious layers, which are disconnected from the basal aquifer \citep{Pryetetal2012b, Violetteetal2014}. The population of the island is entirely dependent on the streams of this zone for water supply. At the lowlands, due to infiltration losses on the riverbeds, only four ravines have been identified to have streamflow reaching to the sea \citep{dOzouville2007}. 
+
+\subsection{Highlands vegetation and study plot}
+The study area lies in the southern windward highlands, within the agricultural zone that extends from the midlands until the summit of the islands. Originally, highlands hosted mainly ferns and forest of endemic \emph{Miconia Robinsoniana} shrub, which has been classified by \cite{Pryetetal2012a} as a low-elevation elfin cloud forest. The \emph{Miconia} shrubs form small patches varying in height. They grow on steep slopes exposed to winds and fog. Due to the development of agriculture, endemic forest are being converted into pasture and secondary forests. However, vast regions of the highlands are covered by the endemic forest, so they are still representative of the contemporary vegetation of the windward highlands. For this reason, we identified one study plot representative of the \emph{Miconia} forest. 
+
+The study plot is characterized by a single-storied architecture of \emph{Miconias} with similar morphological features (\autoref{tb:fog_descrip}). However, sparse sections of small ferns have been observed. Even if height of the shrubs is homogeneous, the diameter of their stems is relatively diverse. Branches have different inclinations and many ramifications from the bottom (\autoref{fig3:fog_canopy}). These branches are characterized by the presence of abundant mosses. Leaves have broadly elongated elliptic shape with conical edges with inclination towards the ground.
+
+
+%The study plot is characterized by a single-storied architecture of \emph{Miconias} with similar morphological features (\autoref{tb:fog_descrip}). However, sparse sections of small ferns have been observed. Even if height of the shrubs is homogeneous(add the average value of height), the diameter of their stems is diverse(provide the range of stem diameters). Branches have different inclinations(provide range of inlinaison)  and many ramifications from the bottom (\autoref{fig3:fog_canopy}). These branches are characterized by the presence of abundant epiphytes. Leaves have broadly elongated elliptic shape with conical edges with inclination towards the ground.
+
+
+
+\section{Methodology}
+
+\subsection{Climatic monitoring} \label{sec:fog_int_moni}
+Climatic monitoring was conducted with a weather station in the clearings close to the study plot (ca. $50$ $\mathrm{m}$) and consists of measurements of rainfall, solar radiation, air temperature, relative humidity, wind direction and speed and fog interception (\autoref{fig3:fog_mon}). Data was recorded at a 15-minutes time step using a Campbell CR1000 datalogger. Rainfall was measured with a Texas TE525MM rain gauge placed at 1.5 m above the ground. Wind speed and direction were monitored with a Young WindSentry Kit positioned at 2 m above the ground. Solar radiation, relative humidity and temperature were measured at 2 m above the ground, with a Kipp\&Zonen SPLite silicone pyranometer and a Campbell CS215 T\&RH sensor, respectively. Fog interception was measured with a cylindrical fog gauge (height 40 cm, 12 cm in diameter) made of plastic mesh (1 mm) at 2 m above the ground. Intercepted water was collected with a funnel at the base of the cylinder and diverted to an automatic tipping bucket rain gauge. Using this system, fog interception and rainfall are collected, hence the partition into rainfall and fog interception is necessary.
+
+
+Throughfall measurements were performed within 6m$\times$6m plot beneath vegetation canopy (\autoref{fig3:fog_mon2}), using \citep{Dominguez2011, Pryetetal2012a}: i) a set of troughs draining into an automatic tipping bucket gauge \citep{Ziegleretal2009, Holwerdaetal2010, Zimmermannetal2014}, and ii) manually read small collectors distributed randomly within the plot \citep{Keimetal2005, Staelensetal2006, Zimmermannetal2009}. Troughs were made of 3 m long PVC pipes of diameter 10 cm cut in half. They have an average inclination of 25$^\circ$ to facilitate drainage. 6 troughs were used in this study corresponding to a collection area of 1.8 m$^2$. Manual collectors are used to assess the spatial representativity of the continuous troughs measurements. Collectors were made from funnels of diameter 16 cm placed over 2-L containers. A total of 30 collectors (total area of 0.6 m$^2$) were used in the plot. They remained fixed during the study period. Measurements were performed manually, but the number of measurements were limited due to difficulties of access to the field notably after rainfall events. 
+
+
+Stemflow was measured using a malleable plastic funnel adhered to the trunk and connected to a hose that drips collected water into a 2-L capacity container. Funnels were made for each trunk with a diameter 1 cm larger than the one of the trunk. They were placed at 0.5 cm above the ground. Stemflow measurements were limited to 8 trunks with a diameter larger than 6 cm. We could not measure stemflow for the rest of the trunks within the plot (78). However, mean height of measured stemflow of the 8 trunks represented less than 0.5\% of incident rainfall, even though we were generous limiting the incident surface of each trunk. In Santa Cruz Island, \cite{Pryetetal2012a} estimated stemflow of 0.6\% of the incident rainfall for the same vegetation at a similar altitude. Thus, considering that errors of our throughfall measurements might be considerably larger than measured stemflow, we consider stemflow to be negligible.
+
+All rain gauges used in the study were corrected for losses during bucket rotation using a dynamic calibration at the laboratory \citep{CalderandKidd1978}. Measured throughfall reached a plateau of 20 mm/h despite measured rainfall was significantly higher. It seems that the capacity of throughfall measured by the troughs cannot be larger than this value, equivalent to 30 tips per minute. Measured throughfall during a storm event was eliminated after the plateau. Therefore, some entire storm events are missing during the hot seasons. 
+
+\subsection{Canopy model}
+Canopy evaporation, net precipitation and cloud water interception are estimated using a modified sparse version of the original Rutter model \citep{Rutter1971, Rutter1975}. The model is based on a running water balance that requires parameters describing the structure, drainage and interception capacity of the canopy (\autoref{fig3:fog_scheme}). In contrast to \cite{Rutter1975} and \cite{Valenteetal1997}, the separation into a canopy and trunks compartment is not consider in the current model version (stemflow is negligible compared to the rainfall amount, see \autoref{sec:fog_int_moni}), thus the water balance calculations are performed only for the canopy and net precipitation ($P_{net}$) is reduced to throughfall \citep{Pryetetal2012a}. However, in cases where stemflow amount is relevant, the trunk compartment can be easily included in this model.
+
+All variables referring to a water storage, or flux, were expressed as depth of water over the whole plot area.
+The model considers changes in the water stored within the canopy compartment derived from the water balance for a plot area. In the absence of cloud water interception ($CWI$) the water budget can be written as follows:
+\begin{equation} \label{eq:fog_can_bal}
+    \Delta C/\Delta t = (1 - p) \times RF - D - E 
+\end{equation}
+where $\Delta C/\Delta t$ $\mathrm{[LT^{-1}]}$ is the variation of the canopy water storage ($C$), $p$ is the free throughfall coefficient, $RF$ $\mathrm{[LT^{-1}]}$ is the rainfall rate, $D$ $\mathrm{[LT^{-1}]}$ is the drainage of the water from the canopy and $E$ $\mathrm{[LT^{-1}]}$ is the wet canopy evaporation rate. Notice that the rainfall input is a proportion of the canopy cover ($1-p$). The canopy storage capacity ($S$) $\mathrm{[L]}$ must be satisfied before drainage occurs. It is calculated using an exponential function \citep{GashandMorton1978, Valenteetal1997, Pryetetal2012a}:
+\begin{equation} \label{eq:fog_drainage}
+D=% 
+  \begin{cases}
+    D_s \times exp(b(C - S)) &  \mathrm{if} \quad C > S \\
+    \\
+    0 & \mathrm{if} \quad C \leq S \\
+  \end{cases}
+\end{equation}
+where $D_s$ $\mathrm{[LT^{-1}]}$ and $b$ are canopy characteristics.
+
+Evaporation of canopy is scaled down from the potential evaporation rate of the plot area ($E_p$) in proportion to the canopy cover and the amount of water stored by the canopy \citep{Pryetetal2012a}:
+\begin{equation} \label{eq:fog_evaporation}
+E=% 
+  \begin{cases}
+    (1-p) \times E_p & \mathrm{if} \quad C \geq S \\
+    \\
+    (1-p) \times C/S \times E_p & \mathrm{if} \quad C < S \\
+  \end{cases}
+\end{equation}
+When the canopy is saturated ($C \geq S$), $E$ reaches the potential evaporation rate of the canopy. For unsaturated canopy ($C < S$), $E$ is proportional to the $C/S$ ratio \citep{Rutter1975, WhiteheadandKelliher1991, Valenteetal1997}. $E_p$ is estimated using the Penman-Monteith (P-M) equation \citep{Monteith1965} with the surface resistance set to zero \citep{Rutter1975, Kelliheretal1993, Muzyloetal2009} and an aerodynamic resistance  calculated from \cite{Rutter1971,Rutter1975} for moderate wind speeds:
+\begin{equation} \label{eq:ra}
+    r_a = \dfrac{1}{k^2u_z}.\left(ln \left(\dfrac{z-d}{z_0} \right) \right)^2  
+\end{equation}
+where $k=0.4$ is the von Karman constant, $u_z$ is wind speed at the measured height, $z_0$ is the roughness length and $d$ is the zero plane displacement. Parameters used in the P-M equation are obtained from \cite{Pryetetal2012a}.  
+
+
+In this model, we consider cloud water intercepted by the canopy. Whereas intercepted rainfall depends of the proportion of the canopy cover, $CWI$ depends basically on the fog properties, wind speed intensity and canopy characteristics \citep{Bruijnzeeletal2006, Villegasetal2008, Holwerdaetal2010, Pryetetal2012a}. The first two factors can be assessed from the rate of intercepted water of a passive fog gauge ($FGI$). Indeed, water collected by the fog gauge will be influenced by the fog characteristics such as air liquid content, fog drop size and the atmospheric conditions such as the wind speed intensity. Then, $CWI$ derived from $FGI$ would only depend of the canopy characteristics. To simplify the effect of the canopy characteristics, a parameter called \textit{fog interception capacity of the canopy} ($fic$) is used for the estimation of $CWI$. Then $CWI$ can be expressed as:
+\begin{equation} \label{eq:fog_wi}
+    CWI = fic \times FGI
+\end{equation}
+Notice that $CWI$ do not depend of the canopy cover but, rather, is only a proportion of $FGI$. Given that $FGI$ would not be a vertical water input, we consider that an horizontal canopy cover would be different than ($1-p$). However, we use $CWI$ to increase the vertical canopy water storage which is a fair assumption considering that $CWI$ will be stored by the canopy before dripping to the floor. 
+
+Considering cloud water interception, the wet canopy water budget equation is written as follows:
+\begin{equation} \label{eq:fog_can_bal_cwi}
+    \Delta C/\Delta t = (1 - p) \times RF + CWI - D - E 
+\end{equation}
+Net precipitation can be estimated from direct throughfall and drainage of canopy:
+\begin{equation} \label{eq:fog_thfall}
+P_{net}=p \times RF + D
+\end{equation} 
+
+\subsection{Model implementation and calibration}
+\subsubsection{Estimation of intercepted water by the fog net}
+Considering that the passive fog gauge captures the combine volume of inclined rainfall, wind-driven drizzle and fog interception ($VF_T$), it is necessary to assess the amount of fog interception from $VF_T$. Even though, inclined rainfall can be assessed as shown below, the separation of fog and drizzle was not possible. Therefore, both components are treated together and referred as cloud water. In order to separate rainfall from cloud water, we make two assumptions: i) intensity and direction at which rainfall is intercepted by the passive fog gauge and rain gauge are the same, and ii) cloud water incidence is horizontal, so the interception surface of the passive fog net is the vertical face of its cylinder. During windy conditions, the rain gauge measures vertical rainfall ($RF_v$), which is the vertical component of actual rainfall ($RF_a$) with an inclination angle ($\gamma$). $\gamma$ is estimated at each time step from rainfall intensity, raindrop size, terminal fall velocity of the raindrops and wind speed \citep{Holwerdaetal2006}. Median raindrop diameter ($RD$) is calculated from the rainfall intensity \citep{LawsandParsons1943, Holwerdaetal2006}:
+ \begin{equation} \label{eq:fog_D}
+    RD = 2.23 \times (0.03937 \times RF_v)^{0.102}
+\end{equation}
+where $RD$ and $RF_v$ are in mm and mm/h, respectively.
+
+The terminal fall velocity $U_D$ (m/s) is estimated from $D$ \citep{GunnandKinzer1949, Holwerdaetal2006}:
+\begin{equation} \label{eq:fog_UD}
+    U_D = 3.378 \times ln(RD) + 4.213
+\end{equation}
+
+Then, rainfall inclination angle is derived as \citep{HerwitzandSlye1995, Holwerdaetal2006}:
+\begin{equation} \label{eq:fog_gamma}
+    tan(\gamma) = U/RD
+\end{equation}
+
+$RF_a$ can be estimated with a trigonometric relationship as follows:
+ \begin{equation} \label{eq:fog_rain1}
+    RF_a = RF_v/cos(\gamma)
+\end{equation}
+where $RF_v$ is equivalent to the volume measured by the rain gauge divided by its horizontal circular surface. Therefore, $RF_a$ can also be determined from the measured volume divided by the projection of the horizontal circular surface perpendicular to the direction of $RF_a$, which corresponds to an ellipse.
+
+Given the above assumptions and equivalence, in the passive fog gauge, the volume corresponding to $RF_a$ can be estimated as:
+ \begin{equation} \label{eq:fog_vol1}
+    VF_r = RF_a \times S_{fp}
+\end{equation}
+where $VF_r$ is the volume of intercepted rainfall by the passive fog gauge and $S_{fp}$ is the projected surface of the fog net perpendicular to the direction of $RF_a$ (\autoref{fig3:fog_gauge}). $S_{fp}$ decreases with the first couple of degrees, such as the rain gauge, until it reaches an inflection point, which corresponds to the appearance of the cylinder net, where $S_{fp}$ starts to increase considerably. $S_{fp}$ reaches a maximum value a couple of ten of degrees before the inclination of rainfall is horizontal, from this point its value starts to decline until it reaches the horizontal projection surface of the cylinder. Because, $S_{fp}$ is a function of the inclination angle of $RF_a$ and its geometry, then, the amount of cloud water from fog gauge interception (FGI) can be estimated as:
+ \begin{equation} \label{eq:fog_fog}
+    FGI = \pi \times h_c \times D_c/2 \times (VF_T - fe \times VF_r)
+\end{equation}
+where $h_c$ and $D_c$ are the height and diameter of the cylinder, respectively, and $fe$ is a coefficient of correction obtained from the bias when comparing volumes between the passive fog and rain gauges during rainfall intensities with a low inclination angle.
+
+
+\subsubsection{Corrections and calibration of the model}
+The canopy model is implemented using 15-minutes time step. Climatic variables measured at the weather station are assumed to be representative of the conditions at the top of the canopy. Corrected rainfall measured with the rain gauge is used as the incident rainfall at the canopy. When values of $FGI$ estimated with \autoref{eq:fog_fog} are negative related to measurement errors, they are set to zero. Given that the plot is located in sloping terrain with an angle $\phi$, incident rainfall intercepted by the canopy ($RF_c$) is estimated using the relation proposed by \cite{Sharon1980}:
+\begin{equation} \label{eq:fog_coef}
+RF_v/RF_c = cos(\phi) + sin(\phi) \times tan(\gamma) \times cos(\Omega_a - \Omega_b) 
+\end{equation}
+where $\Omega_a$ is the slope aspect and $ \Omega_b$ is the wind direction. Using this relation, we consider that the top canopy surface is parallel to the sloping ground. 
+  
+Constant canopy parameters are assumed during the investigation period (June 2013 to May 2015). Canopy parameters ($p$, $S$, $D_s$, $b$ and $fic$) are calibrated with the \emph{Guauss-Levenberg-Marquadt} algorithm implemented in the PEST software \citep{PestDoherty2010} for the optimization of an objective function of minimum weighted least square (OMWLS) between simulated and observed throughfall during the hydrological year 2013-2014 and validated during the hydrological year 2014-2015. In order to reduce the problem of equafinality given the number of parameters, the inversion convergence was insured with a Tikhonov regularization scheme based on initial parameters, in which a second objective function of regularization is optimized. In this way, parameters are constrained to the initial ones. $p$ ans $S$ initial parameters were obtained using a within-event analysis of a set of rainfall storms detailed by \cite{Linketal2004}. In the case of $D_s$ and $b$, values were obtained after a literature review. The parameter $fic$ was not constrained as it would depend entirely of the relation between the capacity of the canopy and this specific fog gauge system to intercept cloud water. Hence, no information is available about the a-priori value. However, different initial values between 0 and 1 were tested. Notice that in this approach, throughfall records are only used for validation purposes and not as inputs of the model.
+
+\section{Results}
+\subsection{Meteorological and below canopy measurements}
+Long term records from the historical weather station operated by the \emph{Charles Darwin Foundation} in Santa Cruz reveal that the hydrological year 2013-2014 (June to May) corresponds to an average year in terms of rainfall ($234$ $\mathrm{{mm}}$) and temperature ($24$ $\mathrm{^{\circ}C}$), while the second year (2014-2015) is characterized by strong rainfall ($484$ $\mathrm{{mm}}$) and relative high temperatures ($25$ $\mathrm{^{\circ}C}$). During the two-years observation period at the study site, daily average wind speed (2.7 m/s) and direction (195 $\mathrm{^{\circ}C}$) remained similar at all seasons. Relative humidity was close to, or at saturation for most part of the period. Solar radiation remained relatively low, however the daily average is lower during the cool seasons. Significant difference in temperatures can be seen between seasons, where the daily average during the 2013-cool season is especially low. Total height of annual measured rainfall at the study site reaches $1762.5$ $\mathrm{{mm}}$ and $2755.5$ $\mathrm{{mm}}$, for the first and second hydrological year, respectively. Incident rainfall at the canopy is $1848$ $\mathrm{{mm}}$ during the first year and $2857.2$ $\mathrm{{mm}}$ during the second year. This corresponds, respectively, to 105\% and 104\% of the measured rainfall by the rain gauge. Mean rainfall intensity is 0.37 mm h$^-1$ during the cool seasons and 0.86 mm h$^-1$ during the hot seasons.
+
+In order to estimate $FGI$, a set of rainfall data ($n=837$) from the rain gauge and fog net was selected when the angle of inclination of rainfall was lower than $2.5$ $\mathrm{^{\circ}C}$ (below this angle, the surface of the cylinder has no influence and measurements from both instruments should be equivalent). Then, equivalent height of water were compared. A relative bias of 0.12 was found between the height of water measured by the fog net and the rain gauge. This is associated to systematical errors in the passive fog gauge measurements. The estimated bias is used in \autoref{eq:fog_coef} as $fe=1.12$. Annual estimated $FGI$ is $1066$ $\mathrm{{mm}}$ and $613$ $\mathrm{{mm}}$ at the first and second year, respectively. From the annual $FGI$, in the first year, 96.4\% correspond to the cool season and 3.6\% to the hot season; whereas during the second year, 95.5\% and 4.5\%, respectively. $FGI$ was registered during 21\% of the first cool season and during 12\% of the second cool season.
+ 
+Due to the clogging of the throughfall tipping buckets and electronic issues with the instrumentation, 21\% of the total throughfall data during the two hydrological years ($n=69216$) is unavailable. Most part of the missed data is from the second year. During the calibration period (first hydrological year), available throughfall data available represents 87\% ($n=17453$) of the cool season and 82\% ($n=11884$) of the hot season. During the second year, it represents 74\% ($n=15274$) of the cool season and 67\% ($n=9711$) of the hot season. From the available throughfall observations, total collected throughfall reaches 121\% and 105\% of the incident rainfall at the canopy, during the first and second year, respectively. These values comparable to the 116-127\% reported by \cite{Gabrieletal2008} in a elfin cloud forest in La Reunion, to the 126\% found by  \citep{Holwerdaetal2006} in a Puerto Rican elfin cloud forest and . Difference of relative throughfall is marked between the cool and hot season at both years. During the first year, relative throughfall is 130\% and 84\% during the cool and hot seasons, respectively. While, it reaches 110\% at the cool season and 88\% at the hot season of the second year. 
+
+\subsection{Model calibration and validation}
+Initial canopy parameters $p$ and $S$ were estimated with linear regressions from cumulative rainfall vs cumulative throughfall from a specific set of events with low relative throughfall values \citep{Pryetetal2012a}. Estimated $p$ by this method is 0.37, while $S$ is 0.45 mm. These initial values were used in the OMWLS method to calibrate all canopy parameters. Calibrated parameters by this method can be observed in \autoref{tb:fog_param}. Calibrated $fic$ indicates that 45\% of cloud water intercepted by the passive fog gauge is in fact intercepted by the vegetation. This value is realistic, given that at similar conditions, we expect that the fog net capacity to intercept cloud water should be larger than the one of the vegetation given that the passive fog gauge is placed at a similar height than the canopy height. During the calibration period (first year), RMSE of simulated throughfall is 0.065 mm ($n=9365$), whereas it reaches 0.093 mm ($n=4567$) at the second year. RMSE is estimated between the simulated and available throughfall of 15-min estimates disregarding data points where its value is equal to zero simultaneously for both datasets. Simulated cumulative throughfall is underestimated by 0.8\% and overestimated by 2.5\% over the first and second year, respectively. However, by season these values are different. During the cool seasons, throughfall is underestimated by 0.4\% in the first year and overestimated by 1.4\% in the second year, whereas, during the hot seasons, throughfall is overestimated by 8.6\% in both years.
+
+Overestimation of throughfall is related to an underestimation of the wet canopy evaporation, which could have an influence on the CWI estimates. If the canopy parameters are expected to be correct (see \autoref{dis_int_model}), then the difference is consequence of an underestimation of evaporation (see \autoref{dis_pert_method}). To overcome this problem, a corrected evaporation ($E_c$) was considered using two alternatives: i) B, using a linear model ($E_c = a \times E_p + b)$ and ii) C, replacing $E_p$ by a constant value during the cool ($E^g_c$) and hot ($E^h_c$) seasons. Even though the latter could be a rough consideration, it would provide mean wet canopy evaporation estimates that could explain the overestimation of throughfall during the hot seasons. Extra parameters in option A and the optimization of mean wet canopy evaporation in option B are calibrated with the rest of parameters using the same methodology. Because the canopy parameters are constrained, slight differences in the calibration of their values are expected. 
+
+\autoref{tb:fog_param} shows the resulting parameters and statistics of the calibration process. It appears that model B and C have a better performance than model A according to the estimated RMSE and bias. RMSE is relatively similar in the three models, but model C has the lowest values (RMSE is estimated between the simulated and available throughfall of 15-min estimates disregarding data points where its value is equal to zero simultaneously for both datasets). During the cool season all three models have a low bias. However, in the hot season the bias of model C is the lowest reaching 1.2\% compared to the 5.1\% of model B and to the even worse 8.6\% of model A. Clearly model C shows a better performance than the other two models. With model C, simulated cumulative throughfall is overestimated by 0.6\% and 3.1\% over the first and second year, respectively.
+
+
+
+%The model satisfactorily simulates throughfall along the study period (\autoref{fig:fog_res1} and \autoref{fig:fog_res2}). During the calibration period (first year), RMSE of simulated throughfall is 0.06 mm ($n=9365$), while it is 0.08 mm ($n=4567$) at the second year. RMSE is estimated between the simulated and available throughfall of 15-min estimates disregarding data points where its value is equal to zero simultaneously for both datasets. Simulated cumulative throughfall is underestimated by 0.6\% and overestimated by 0.7\% over the first and second year, respectively.
+
+%The value of $p$ is in accordance with the value of canopy gap fraction estimated from vertical photographs under the canopy plot (0.41).
+\subsection{Cloud water interception and canopy water budget}
+Model C was considered in the quantification of cloud water interception and the rest of the water budget variables because is the model that has the best performance and and show more coherence (see discussion in \autoref{dis_pert_method} and \autoref{dis_evaporation}). Cumulative $CWI$ by the canopy is $523$ $\mathrm{{mm}}$ during the first year and $300$ $\mathrm{{mm}}$ during the second year (\autoref{tb:fog_wb}). These values represent 28\% and 10\% of the total water input of the first and second year, respectively. Seasonally, marked difference can be seen in the $CWI$ quantities. It represents 34\% and 18\% of the water inputs at the first and second cool season, respectively (\autoref{fig:fog_res3}); while at the hot season, $CWI$ represents 2\% at the first year, and 1\% at the second one. Clearly, contribution of $CWI$ is significant during the cool season, while during the hot season it can be consider negligible. Cumulative evaporation reaches 264 mm during the first year and 260 mm during the second year. These values correspond to 11\% and 8\% of the total water outputs for the first and second year, respectively. Contribution of actual evaporation during the cool seasons represent 70\%  of the yearly $E$ for the first year and 64\% for the second year. This is expected considering that, during the cool season the canopy remains wet for longer periods than during the hot season, hence more water is subject to evaporation.
+
+
+
+\section{Discussion}
+
+\subsection{Pertinence of the methodology} \label{dis_pert_method}
+
+The proposed methodology is established on a physically based model, in which parameters and simulated values are confronted to real observations. Uncertainties in $CWI$ should be highlighted, given that its estimation is subject to the propagation of errors from both sampling and modeling. It remains open the discussion about possible underestimation of wet canopy evaporation applying the P-M theory. Possible errors are related to (a wide discussion about this matter is reported in \cite{vanDijketal2015}): unaccounted energy advection of warm air from nearby ocean \citep{Shuttleworth1979, Schellekensetal1999, Holwerdaetal2010}; heat release due to condensation of the air above the forest, thermal energy stored in the forest or in the ground \citep{Scatena1990, Schellekensetal1999, VanDijketal2001, vanDijketal2015} could provoke an underestimate of evaporation; mechanical water losses, such as the effect of the evaporation of splash droplets produced in the canopy \citep{Murakami2007, Dunkerley2009}; an underestimation of the aerodynamic resistance \citep{Holwerdaetal2012} and; errors in air humidity measurements \citep{Frumauetal2006, Holwerdaetal2010, Pryetetal2012a}. The first three processes put into question the validity of evaporation estimates with the P-M equation and their actual significance results challenging to quantify. Underestimation of the aerodynamic resistance could indeed happen in locations with complex topography and wind measurements different from above the canopy \citep{Holwerdaetal2012}. However, the study site is located in an open area with a relative constant slope and the wind direction is practically constant, which reduce the turbulent exchange in comparison with a complex terrain. Even though wind speed measurements are not performed above the canopy, these are performed near the forest at a similar height, therefore similar magnitudes are expected. Errors in air humidity measurements with permittivity sensors are common because these are not sensitive in near-saturation conditions, they can be affected by rain splash and condensation can occur on the protection shield \citep{vanDijketal2015}. Moreover, humidity can remain soaked in the shield even though the air is drier in the exterior \citep{Pryetetal2012a}. Because the Vapor Pressure Deficit (VPD) term of the P-M equation is estimated from the relative humidity, an overestimation of RH could have a considerable influence in the evaporation estimates. In the study site, when the canopy is saturated or partially saturated, the value of RH measured by the sensor is 100\% during 79\% and 93\% of the time of the cool and hot seasons, respectively. Even though due to the presence of fog and drizzle during the cool season RH could remain at saturation conditions, this is not the case in the hot season. Indeed, even during rainfall events of the hot seasons conditions seemed drier (Author's observations). \cite{WallaceandMcJannet2008} and \cite{vanDijketal2015} estimated evaporation with a reduction of 2\% of RH and reported an increase in 31\% and 34\% of evaporation respectively. In a low-elevation Puerto Rican elfin cloud forest,\cite{Holwerdaetal2006} showed that using a fixed value of RH of 99.5\% instead of 100\%, estimated evaporation increased 27\%. In order to reach the calibrated evaporation with the PM equation in this study, it would be necessary to reduce the value of RH by XX\%. Overestimation of RH alone could easily explain the underestimation of evaporation by the P-M equation during the hot season. This issue could be addressed using dry- and wet-bulb temperature monitoring to estimate directly VPD \citep{Holwerdaetal2006, Holwerdaetal2010} or more sophisticated equipment such as eddy covarience instruments \citep{Holwerdaetal2012}. The latter allows direct measurements of aerodynamic conductance and heat fluxes, therefore other possible sources of errors could be addressed.
+
+% Indeed, an underestimation of evaporation will result in a reduction of the parameter $fic$ in the calibration process, and therefore it would lead to an underestimation of $CWI$. Nevertheless, estimates of throughfall are consistent with observation in all seasons, including the hot season in which $CWI$ is negligible. Given that estimates of evaporation by the model are consistent during all seasons, estimates of $CWI$ should remain fair. 
+
+Fog inputs are introduced to the canopy model through a parameter ($fic$) that relates the capacity of cloud water interception between the canopy and the passive fog gauge. Though it might be a rough assumption it shows good results. \cite{Villegasetal2008} and \cite{Holwerdaetal2011} reported that the amount of fog interception measured by passive fog gauges and by vegetation is significantly correlated. However, passive fog gauge catch efficiency is wind speed dependence \citep{Frumauetal2011, Holwerdaetal2012}. Moreover, variation in cloud water fluxes and droplets size tend to differ the efficiency depending of the passive fog gauge system \citep{Frumauetal2011}. The proposed fog gauge system was built locally and there is not information about its efficiency. A Juvik-type fog gauge system \citep{Juvik1978} is the most similar to the one used in this study (but the material of net is different). This type of system tends to increase its efficiency with wind speed but it is leveled off quickly between 2 and 4 ms$^-1$ reaching a plateau \citep{Frumauetal2011}.  A plateau of efficiency is also reached with droplet sizes above 30 $\mathrm{\mu}$m \citep{Frumauetal2011}. In this study, when $FGI$ is registered wind speed is above 2 ms$^-1$ during 96\% of the time. Moreover, wind speed variation during cloud water is low, 92\% of registered $FGI$ occurred with wind speed values between 2 and 4 ms$^-1$. \textbf{The low percentage of $FGI$ during low wind speeds ($<$ 2 ms$^-1$) may suggest the poor efficiency of the fog gauge system under these conditions. If so, CWI is probably low and might not affect the estimations as the RMSE during the cool season is relatively low.} The relative high values and low variation of wind speed could justify the use of a constant value of $fic$ and therefore estimates of $CWI$ should remain fair. In order to overcome these uncertainties, a well-defined catch-efficiency fog gauge system should be used \citep{Holwerdaetal2011, Frumauetal2011}.
+%Nevertheless, the efficiency of the passive fog gauge system should be assessed and compared with well-defined catch-efficiency fog gauge systems \citep{Holwerdaetal2011, Frumauetal2011}. In order to overcome these uncertainties, a well-defined catch-efficinecy fog gauge system should be used \citep{Holwerdaetal2011, Frumauetal2011}.
+
+%
+
+In this study we use throughfall only for validation purposes and not as inputs to estimate $CWI$ (contrary to the methodology proposed by \cite{Pryetetal2012a}). This is a important advantage given that throughfall monitoring is challenging to maintain and continuous observations are hardly available. This method could be applied in a comparative study, in which estimates of $CWI$ can be compared between different vegetation using the same passive fog gauge system. In this way, the canopy characteristics that influence $CWI$ could be identified. Also a similar fog interception system in different areas in a region can lead to identification of the driving factors related to fog intensity. 
+
+
+\subsection{Interception model and wet canopy evaporation} \label{dis_evaporation}
+The interception model with three variation of wet canopy evaporation were used in this study. Model C presents the better performance according to the estimated RMSE and bias (\autoref{tb:fog_param}) even though, a fixed $E_{wet}$ value per season is used, which should be more influential on the RMSE estimation increasing its value. This is probably because 15-min estimates of $E_p$ have small variations (89\% of $E_p$ between 0 and 0.1 mm) and rainfall rates are considerably higher than actual evaporation estimated with \autoref{eq:fog_evaporation}. In the case of the mean wet canopy evaporation rates, there are several differences between the three models. Model A has the lowest values, with $E_{wet}$ of the cool season higher than the one in the hot season, which is strange considering the conditions of each season (wet and cold in the cool garua season and dry and hot in the invierno season). This could be a consequence of the predominance of the radiation term in $E_p$ due to saturation conditions, which is also recurrent during the hot season. In model B, $E_{wet}$ is also higher during the hot season because this value depends directly of $E_p$. However, $E_{wet}$ is considerably higher than model A (74\% and 97\% higher during the cool and hot seasons, respectively). In this model, the constant term $b_e$ represents ca. 48\% of $E_{wet}$, which shows the need to increase the overall evaporation regardless of the variation of the 15-min $E_p$. Such result also justifies the use of a fixed value of $E_{wet}$. In model C, fixed values of $E_{wet}$ are also higher than model A (3\% and 66\% higher during the cool and hot seasons, respectively). However, the variation during the cool season is small compared with the one of the hot season, and therefore $E_{wet}$ during the hot season is 24\% higher than the one of the cool season (contrary to the others models). Indeed, a higher  $E_{wet}$ during the hot season should be expected due to a higher VPD which can't be considered as a consequence of a possible overestimation of the RH. In the same matter, similar values are expected during the cool season given the wet conditions where the radiation term is the more predominant in the evaporation. 
+
+Differences in the P-M and measured-derived wet canopy evaporation have been reported as well in other studies \citep{Scatena1990, Dykes1997, Waterlooetal1999, Schellekensetal1999, WallaceandMcJannet2008, Holwerdaetal2012}. \cite{Calderetal1986} proposed large values of maximum canopy storage ($S$) in order to increase evaporation. However, an overestimation of $S$ could be considered an artefact given that such high value might not represent the actual characteristics of the canopy \citep{Lloydetal1988}. Another solution is an optimization of the wet canopy evaporation. \cite{Schellekensetal1999} reported a large overestimation of throughfall using a value of 0.11 mm h$^{-1}$ of wet canopy evaporation derived from the P-M equation. The authors optimized this value to 2.8 mm h$^{-1}$ (25 times higher) using a trial error procedure in a Rutter model to overcome this issue. \cite{Holwerdaetal2012} also reported a difference between $E_{wet}$ derived from throughfall measurements (0.63 mm h$^{-1}$) and calculated with the PM equation (0.16 mm h$^{-1}$) with a meteorological station in the monitored forest. The authors corrected this estimate to 0.58 mm h$^{-1}$ using the same P-M equation but, instead of using the conventionally derived estimates of aerodynamic resistance (such as \autoref{eq:ra}), they used direct measurements of aerodynamic resistance using eddy covariance instruments. In this study, a fixed value of $E_{wet}$ corresponding to each season has been calibrated with the rest of the canopy parameters.
+
+Canopy parameters are relatively similar in the three models, except for $S$ and $D_s$, probably because of their imposed restrictions and/or because they have a low influence in the throughfall estimates. $fic$, which is a free parameter that controls the quantity of $CWI$ barely varies between 0.45 (Model A) and 0.51(Model B). It appears that despite the change of the wet canopy evaporation is relative large, it seems to have a small effect on $CWI$. This fact have been already reported by \cite{Holwerdaetal2006} in an Puerto Rican elfin cloud forest when the authors tested the effect of an increase in interception losses to the overall fog deposition.
+
+\subsection{Canopy parameters} \label{dis_int_model}
+
+Calibrated canopy parameters $p$ and $S$ values are comparable with values found in the literature \citep{Aston1979, Lloydetal1988, WallaceandMcJannet2008, Takahashietal2011, Holwerdaetal2012}. While the value of $p$ can be comparable with the one ($p=0.3$) found by \cite{Pryetetal2012a} for the same type of vegetation in Santa Cruz Island, $S$ is higher in this study ($S$ of 0.23 mm reported by \cite{Pryetetal2012a}) and comparable with a secondary forest in Santa Cruz Island at the midlands (0.62 mm) reported by \cite{Dominguezetal2016}. The difference might be related to a larger dataset used in this study, which include both cool and hot seasons, difference in the methodology, and the larger presence of moses observed in this forest. Despite small values of $S$ associated with average values of $p$ are attributed to a single storey tree architecture and sparse understorey vegetation \citep{Pryetetal2012a}, such as in the present study, the abundant presence of moses may play an important role on the value of $S$. Indeed, they have a high water storage capacity, a slow drainage and their effect in throughfall differs to the structural components of the forest \citep{Richardsonetal2000, Kohleretal2007, Villegasetal2008}. However, it should be considered that in wet conditions epiphytes are unable to accomodate additional moisture \citep{Holscheretal2004}. Estimated $S$ found in the \textit{Miconia} forest is comparable with the value of 0.5 mm reported by \cite{Holwerdaetal2006} for a 3 m high evergreen forest in Puerto Rico and it is within the range (0.39 - 1.59 mm) reported by \cite{NavarndBryan1994} in a 2 m semi-arid dense scrub vegetation in Mexico. Even though, cumulative throughfall might not be so sensitive to the drainage parameters ($D_s$ and $b$), they provide a more accurate estimation of throughfall at such small time step. Parameter $fic$ shows the capacity of the canopy to intercept fog compared to artificial fog net. Despite this value is related to canopy characteristics such as height, size, orientation and leaves morphology; its significance remains related to the efficiency and capacity of the fog gauge to capture fog. Indeed, the efficiency of the fog gauge depends of the type, material and form \citep{Villegasetal2008}. Nevertheless, estimations of $CWI$ by the vegetation would remain fair, because they are subject to the validation of the model. 
+
+\subsection{Cloud water interception}
+Estimated $CWI$ is negligible during the hot seasons while during the cool seasons it is significant. $CWI$ represents 52\% and 21\% of the incident rainfall during the first and second cool season, respectively. These values are relative high comparing to studies reviewed by \cite{Bruijnzeeletal2011} (4\% to 45\%) and others reported by the literature (6\%-31\%) \citep{Hutleyetal1997, Holwerdaetal2006, McJannetetal2007a, Holwerdaetal2010, Ueharaetal2012}. However, they are small compared to the value of 93\% found by \cite{CavalierandGoldstein1989}. Daily average $CWI$ is 2.3 mm and 1.3 mm during the first and second cool seasons, respectively. \cite{Pryetetal2012a} estimated daily $CWI$ of 1.2 mm for the same type of vegetation at a similar altitude (650 m a.s.l.) in another island of Galapagos during the 2010 cool season. This value can be comparable with the value found in the 2014 cool season of this study. Our estimates are within the range reported by the literature. \cite{Giambellucaetal2011} reported daily $CWI$ of 0.43 mm for low shrubs and trees in Hawaii, \cite{Ritteretal2008} found values of 0.7 mm in a elfin laurel forest in Canary, \cite{Holwerdaetal2006} reported values of 2.14 mm for a 3 m tall Puerto Rican cloud forest, while \cite{CavalierandGoldstein1989} found values of 2.18 mm in a cloud forest in Colombia. Estimates of daily $CWI$ reported by \cite{Ueharaetal2012} reach 3.26 mm for a dwarf coniferous shrub in the Japan Alps.
+
+Estimates of $CWI$ by the vegetation are contrasting between the two cool seasons. Difference between both seasons can be related to changes in the canopy structure or due to meteorological factors. Indeed, changes in the canopy structure are likely to happen between seasons. \cite{Aboaletal2000} found that heavy thinning of a pine forest in Tenerife (Canary Islands), led to a long-term decline in throghfall, in which throughfall showed to be significantly affected by its vegetation basal area and LAI. However, it should have a small effect on the $CWI$ estimates of the vegetation given that $CWI$ is a proportion of the quantity measured by the fog gauge and simulated cumulative throughfall remain close to the observed ones during both cool seasons. Given constant canopy characteristics, $CWI$ is basically driven by the fog liquid water (LWC) content and wind speed intensity \citep{Villegasetal2008}. \cite{Villegasetal2008} reported that $CWI$ is constraint at low LWC by limited fog availability and at high LWC by precipitation potential. The authors also concluded that optimal conditions for $CWI$ are during medium values of LWC and wind speed. LWC was not measured in this study, nevertheless its presence can be assessed from wind speed measurements during $CWI$. Generally, for higher wind speeds, mean $CWI$ increases at both cool seasons, but some difference can be identified (\autoref{fig:fog_res4}). At the first cool season, average $CWI$ constantly increases with wind speed, even at high wind speed intensities. At the contrary, during the second cool season, the increasing reaches a plateau around 5 m/s and then it starts to decrease. $CWI$ during the first season starts at lower values of wind speed than the second season. The plateau of $CWI$ and its late start with lower wind speeds, suggest that LWC is lower than its optimal conditions, whereas LWC during the first seasons seems optimal, given that there is enough LWC at low wind speeds to be intercepted and at higher wind speeds it is still not reaches its peak. For this reason, we consider that the higher values of $CWI$ during the first cool season are related to a higher presence of LWC that combined with the observed wind speeds enhances better conditions of $CWI$ compared with the second season. Indeed, average values of meteorological variables of the two cool seasons are similar, except for temperature, which is significant lower during the first cool season (ca. $2$ $\mathrm{^{\circ}C}$). Temperature could explain the difference in LWC, given that higher LWC is inversely related to the latent heat of condensation of water temperature \citep{Thompson2007}.
+
+
+
+
+\section{Conclusions}
+We have proposed a methodology to estimate cloud water interception by the vegetation using a \textit{Rutter-type} interception model. The approach requires the acquisition of input and calibration datasets. Inputs consist in continuous records of meteorological variables, which include cloud water interception using a fog gauge system. Meanwhile, samples of throughfall are necessary for the calibration and validation of the model only and not as inputs in the model, which is an important advantage considering that continuous records of throughfall are challenging to obtain.
+
+During two hydrological years (2013-2014 and 2014-2015), the model has been implemented in an endemic forest of the windward highlands of San Cristobal Island, in which the presence of fog is semi-permanent during half of the year. In these conditions, this is the first compiling approach for water balance estimation. Results show that $CWI$ reaches 28\% and 10\% of the total water input of the first and second year, respectively. During the hot seasons, $CWI$ is negligible (less than 1\%), while it represents 34\% and 18\% of the water inputs during the first and second cool seasons, respectively. Despite similar wind speed intensities are observed in both cool seasons, the higher value of $CWI$ in the first cool season compared to the second one (504 mm and 287 mm for the first and second year, respectively) is related to higher liquid water content in the air that combined with the observed wind speed intensities, leads to better conditions of $CWI$.  
+
+In this study, estimated throughfall was overestimated during the hot season as a consequence of an overestimation of the wet canopy evaporation using the Penman-Monteith equation. Such difference was overcome using a fixed value of wet canopy evaporation for each season obtained from an optimization process. However, this issue could be addressed improving the instrumentation with  dry- and wet-bulb temperature sensors or more sophisticated equipment such as eddy covarience instruments. The passive fog gauge used allowed the estimation of cloud water interception by the vegetation. Nevertheless, there is not information about its cloud water catch-efficiency which could be affected by wind speed and other factors. Such type of uncertainties could be overcome using a well-defined catch-efficiency fog gauge system. 
+
+In this study we determined that $CWI$ is a notably source of water in the highlands of the island, particularly during the first year which is consider to be an average year in terms of climate. Therefore, the role of vegetation in the highlands is important to the hydrology of the island. During the cool season, given the low intensity of throughfall contribution to the soil and the relative high infiltration capacity of it, $CWI$ will most likely contribute to groundwater recharge. If climate change produces an increase in the temperature, and therefore a raise of the fog layer formation, which probably results in a reduction of fog occurrence, and land use change from the endemic forest to pasture still occurs on the highlands; it would most probably induce a reduction of net precipitation, and hence a reduction of discharge of the downwards rivers originated from springs.
+
+\end{linenumbers}
+\newpage
+
+\bibliography{biblio_fog}
+
+
+%2) monitoring plot
+%3) diagram model
+%3) general resultats calibration results during 3 months on wet conditions (small T)
+%4) observed ans simulated variables over one hydrological year (x, y) only points!!
+%5) Cum water height for the diffrent vhydrological variables
+
+\newpage
+\section{Tables}
+
+
+\begin{table}[H]
+           \caption[Features of the study plot]{Features of the study plot.} \label{tb:fog_descrip}
+           \centering
+           \footnotesize
+            \colorbox{gray!15} {
+\centering
+            \begin{tabular}{lcc}
+            Parameter&&Value\\ 
+            \hhline{---} \\[-8pt]
+            Altitude [m a.s.l.]&&610\\
+            Terrain slope&&10$^{\circ}$\\
+            Slope aspect&&170$^{\circ}$\\
+            Height [m]&&3.0\\			
+			Vegetation type&&Elfin cloud forest\\
+			Dominant species&&\emph{Miconia Robinsoniana} shrub\\
+			Albedo&&0.1\textsuperscript{\textcolor{Blue4}{\bf {\tiny{a}}}}\\
+			Canopy gap fraction ($p$)\textsuperscript{\textcolor{Blue4}{\bf {\tiny{b}}}}&&41\%\\
+			\hhline{---}\\ 	
+			[-8pt]		             
+            \multicolumn{3}{l}{\tiny \textcolor{Blue4}{\bf {\tiny{a}}} Value from \cite{Pryetetal2012a}.}\\
+            [-3pt]
+            \multicolumn{3}{l}{\tiny \textcolor{Blue4}{\bf {\tiny{b}}} Value estimated from photographical analysis.}
+            \end{tabular}
+            }
+            \end{table}
+
+
+\begin{table}[H]
+           \caption{Canopy parameters, wet evaporation modifications and statistics of three options used in the interception model at the study plot. Calibrated parameters are estimated using the \emph{Guauss-Levenberg-Marquadt} algorithm with a regularization scheme. In \textit{Model A}, wet canopy evaporation $E_{wet}$ is estimated using the P-M equation with a surface resistance set to zero ($E_p$). In \textit{Model B}, $E_{wet}$ is obtained after a correction of $E_p$ in the form: $E_{wet}=a_e \times E_p + b_e$. In \textit{Model C}, $E_{wet}$ is a fixed value for each season. \textit{G} and \textit{I} correspond to the cool (garua) and hot (invierno) seasons respectively.} \label{tb:fog_param}
+           \centering
+           \footnotesize
+            \colorbox{gray!15} {
+\centering
+            \begin{tabular}{llccc}
+            \textit{Parameter}&\textit{Season}&\textit{Model A}&\textit{Model B}&\textit{Model C}\\ 
+            \hhline{-----} \\[-8pt]
+			$p$[-] &&0.39&0.41&0.4\\
+			$S$ [mm]&&0.52&0.35&0.59\\
+			$D_s$ [mm s$^{-1}$]&&1.7 $\times 10^{-3}$&9.3 $\times 10^{-4}$&1.9 $\times 10^{-3}$\\
+			$b$ [mm$^{-1}$]&&2.64&2.48&2.66\\
+			$fic$ [-]&&0.45&0.51&0.49\\
+			[8pt]
+			$a_e$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{a}}}} [-]&&-&9.5$\times 10^{-1}$&-\\
+			$b_e$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{a}}}} [mm h$^{-1}$]&&-&6.8$\times 10^{-2}$&-\\
+			[8pt]
+			\multirow{2}{*}{$E_{wet}$ [mm h$^{-1}$]}&\textit{G}&8.6$\times 10^{-2}$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{b}}}}&1.5$\times 10^{-1}$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{c}}}}&8.9$\times 10^{-2}$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{d}}}} \\			
+			&\textit{I}&6.6$\times 10^{-2}$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{b}}}}&1.3$\times 10^{-1}$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{c}}}}&1.1$\times 10^{-1}$\textsuperscript{\textcolor{Blue4}{\bf {\tiny{d}}}} \\			
+			[8pt]
+			\multirow{2}{*}{RMSE [mm] ($n=8233$)}&\textit{G}&6.0$\times 10^{-2}$&6.1$\times 10^{-2}$&5.9$\times 10^{-2}$\\
+			&\textit{I}&9.6$\times 10^{-2}$&9.3$\times 10^{-2}$&8.8$\times 10^{-2}$\\
+			\multirow{2}{*}{Bias [\%]}	&\textit{G}&-0.4&-0.6&0.5\\
+			&\textit{I}&8.6&5.1&1.2\\		
+			\hhline{-----}\\	
+			[-8pt]		             
+			\multicolumn{5}{l}{\tiny \textcolor{Blue4}{\bf {\tiny{a}}} Parameters $a_e$ and $b_e$ are used in \textit{Model B} to correct wet evaporation.}\\
+			[-4pt]		             
+			\multicolumn{5}{l}{\tiny \textcolor{Blue4}{\bf {\tiny{b}}} Obtained from $E_p$ (P-M equation).}\\
+			[-4pt]		             
+			\multicolumn{5}{l}{\tiny \textcolor{Blue4}{\bf {\tiny{c}}} Estimated as $E_{wet}=a_e \times E_p + b_e$, where $a_e$ and $b_e$ are calibrated with the rest of the canopy parameters.}\\
+			[-4pt]		             
+			\multicolumn{5}{l}{\tiny \textcolor{Blue4}{\bf {\tiny{d}}} Fixed value for each season calibrated with the rest of the canopy parameters.}
+            \end{tabular}
+            }
+            \end{table}
+
+\begin{table}[H]
+           \caption[Canopy water balance variables at the study plots during the two hydrological years of study]{Canopy water balance variables at the study plots during the two hydrological years of study.} \label{tb:fog_wb}
+           \centering
+           \footnotesize
+            \colorbox{gray!15} {
+\centering
+            \begin{tabular}{lccc}
+            Variable&&2013-2014&2014-2015\\ 
+            \hhline{----} \\[-8pt]
+			Rainfall\textsuperscript{\textcolor{Blue4}{\bf {\tiny{*}}}} $RF$ [mm]&&1848&2857\\
+			Fog interception $CWI$ [mm]&&523&300\\			
+			Wet canopy evaporation $E$ [mm]&&264&260\\
+			Throughfall $TF$ [mm]&&2107&2897\\
+			\hhline{----}\\	
+			[-8pt]		             
+			\multicolumn{4}{l}{\tiny \textcolor{Blue4}{\bf {\tiny{*}}} Rainfall measured by rain gauge is corrected for sloping terrain, slope aspect and wind speed \citep{Sharon1980}.}\\
+            \end{tabular}
+            }
+            \end{table}
+
+
+\newpage
+\section{Figures}
+%1) study site
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/chap3_fog_map.png}
+  \caption[Study site location for climatic monitoring at 600 m of elevation in San Cristobal]{Location of the study site used for climatic and canopy monitoring in the windward side of San Cristobal Island. The hydrological monitoring was set up in an endemic forest at 600 m of elevation on the windward slope of the island (image from \cite{IGM2014}).} \label{fig3:fog_map} 
+\end{figure}
+
+\begin{figure} \centering
+  \includegraphics[width=12cm]{Figures/fig3_interception_scheme.pdf}
+  \caption[Interception model scheme]{Interception model scheme. $p$, $S$, $D$, $b$ and $fic$ are canopy parameters. Bold variables are inputs of the model.} \label{fig3:fog_scheme} 
+\end{figure}
+
+
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/chap3_fog_mon.pdf}
+  \caption[Representation of the hydrological monitoring at 600 m of elevation]{Representation of the hydrological monitoring at 600 m of elevation. A weather station is placed on the open area ($Srad$: solar radiation, $WS$: wind speed and direction, $AT$: air temperature, $RH$: relative humidity, $RF$: rainfall; and below the canopy:  stemflow ($S_{flow}$) and throughfall($Th_{fall}$)).} \label{fig3:fog_mon} 
+\end{figure}
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/fig3_canopy_photo.png} 
+  \caption[Morphological features of \emph{Miconia} shrubs]{Morphological features of \emph{Miconia} shrubs in the study site at the highlands of the windward side of San Cristobal. (A) Canopy coverage, (B) branches angle, (C) leaf shape and orientation and (D) flow path obstructions: epiphytes.} \label{fig3:fog_canopy} 
+\end{figure}
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/chap3_fog_mon2.png}
+  \caption[Throughfall and stemflow monitoring below the canopy of the \emph{Miconia} forest]{Throughfall and stemflow monitoring below the canopy of the \emph{Miconia} forest. Throughfall is measured with troughs and collectors. Stemflow is measured with small collection funnels.} \label{fig3:fog_mon2} 
+\end{figure}
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/chap3_fog_gauge.pdf}
+  \caption[Fog gauge surface variation as a function of rainfall inclination]{Fog gauge surface variation which is a function of rainfall inclination. An accurate surface estimation is necessary to estimate cloud water interception by the fog gauge.} \label{fig3:fog_gauge} 
+\end{figure}
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/fig3_inter5.pdf}
+  \caption[Simulated throughfall from the interception model]{Simulated throughfall from the interception model. A) Comparison of simulated vs observed throughfall. B) Cumulative rainfall vs observed and simulated cumulative throughfall while observed throughfall is available. A seasonal change of slope can be seen between the cool garua season (G) and the hot invierno season (I).} \label{fig:fog_res1} 
+\end{figure}
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/chap3_inter6.pdf}
+  \caption[Climatic variables and modeled throughfall]{Climatic variables and modeled throughfall at 15-min time step during two weeks of the cool and hot seasons of the hydrological year 2013-2014.} \label{fig:fog_res2} 
+\end{figure}
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/fig3_inter7a.pdf}
+  \caption[Seasonal canopy water balance summary during the two hydrological years of study]{Seasonal canopy water balance summary during the two hydrological years of study 2013-2014 and 2014-2015. $RF$ is rainfall corrected for sloping terrain, slope aspect and wind speed, $CWI$ is cloud water interception by the canopy, $TF$ is simulated throughfall and $E$ is wet canopy evaporation.} \label{fig:fog_res3} 
+\end{figure}
+
+\begin{figure}[H] \centering
+  \includegraphics[width=14cm]{Figures/chap3_inter8.pdf}
+  \caption[Statistic of CWI classified for wind speed intervals ]{Statistic of CWI classified for wind speed intervals during the first (A) and second (B) cool seasons at the study site at 600 m of elevation.} \label{fig:fog_res4} 
+\end{figure}
+
+
+\end{document}
+
